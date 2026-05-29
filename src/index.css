@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-slate-900 antialiased;
+  font-family: 'Sora', 'Segoe UI', system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(87, 213, 255, 0.35);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer components {
+  .container-main {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .screen-shell {
+    @apply snap-none;
+  }
+
+  .screen-block {
+    @apply relative py-16 sm:py-24;
+  }
+
+  .glass-panel {
+    @apply border border-slate-200 bg-white backdrop-blur-xl;
+  }
+
+  .deep-panel {
+    @apply border border-slate-300 bg-gradient-to-br from-white via-sky-50 to-cyan-50 backdrop-blur-xl;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold tracking-tight text-slate-900 md:text-4xl;
+  }
+
+  .section-subtitle {
+    @apply mt-3 max-w-3xl text-sm text-slate-800 md:text-base;
+  }
+
+  .btn-primary {
+    @apply rounded-xl bg-gradient-to-r from-accent to-accentSoft px-6 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.02] hover:brightness-110;
+  }
+
+  .btn-secondary {
+    @apply rounded-xl border border-sky-300/50 bg-white px-6 py-3 text-sm font-semibold text-sky-800 transition hover:border-sky-400 hover:bg-sky-50;
+  }
+
+  .reveal {
+    animation: fadeUp 0.7s ease-out both;
+  }
+}
