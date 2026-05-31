@@ -6,8 +6,8 @@ function AccountDeletionPage() {
           <p className="text-xs uppercase tracking-[0.16em] text-sky-800">Google Play Uyumlu</p>
           <h1 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-5xl">Hesap ve Veri Silme Talebi</h1>
           <p className="mt-5 max-w-4xl text-sm leading-7 text-slate-700 sm:text-base">
-            Kuzucular Premium Servis kullanıcıları, hesaplarının ve ilgili uygulama verilerinin silinmesini talep
-            edebilir. Bu sayfa, Google Play gerekliliklerine uygun resmi silme sürecini açıklar.
+            Bu sayfa, Kuzucular Premium Servis uygulaması için Google Play hesap ve veri silme gerekliliklerine uygun
+            resmi bilgilendirme metnidir. Apple App Store kullanıcıları için de aynı süreç geçerlidir.
           </p>
         </div>
       </section>
@@ -16,32 +16,60 @@ function AccountDeletionPage() {
         <article className="glass-panel rounded-2xl p-6 sm:p-7">
           <h2 className="text-lg font-semibold text-slate-900">1. Talep Oluşturma Yöntemi</h2>
           <p className="mt-3 text-sm leading-7 text-slate-700 sm:text-base">
-            Hesap silme talebinizi e-posta ile <a className="font-semibold text-sky-700 hover:text-sky-800" href="mailto:mehmetaltiok.ma@gmail.com">mehmetaltiok.ma@gmail.com</a> adresine iletebilir
-            veya destek sayfasındaki formu kullanabilirsiniz.
+            Hesap silme talebinizi e-posta ile{' '}
+            <a className="font-semibold text-sky-700 hover:text-sky-800" href="mailto:mehmetaltiok.ma@gmail.com">
+              mehmetaltiok.ma@gmail.com
+            </a>{' '}
+            adresine iletebilir veya destek sayfasındaki formu kullanabilirsiniz.
           </p>
         </article>
 
         <article className="glass-panel rounded-2xl p-6 sm:p-7">
-          <h2 className="text-lg font-semibold text-slate-900">2. Silinecek Veriler</h2>
+          <h2 className="text-lg font-semibold text-slate-900">2. Talep Doğrulama</h2>
           <p className="mt-3 text-sm leading-7 text-slate-700 sm:text-base">
-            Doğrulama sonrası kullanıcı hesabı, oturum bilgileri, kullanıcıya bağlı müşteri/araç/servis kayıtları ve
-            uygulama içi operasyon verileri silme kapsamına alınır.
+            Yetkisiz silme işlemlerini önlemek amacıyla, talep sahibi kullanıcı kimliği doğrulanabilir. Bu doğrulama,
+            hesap güvenliği ve veri bütünlüğü için uygulanır.
           </p>
         </article>
 
         <article className="glass-panel rounded-2xl p-6 sm:p-7">
-          <h2 className="text-lg font-semibold text-slate-900">3. Geçici Saklama Durumları</h2>
+          <h2 className="text-lg font-semibold text-slate-900">3. Silinecek Veriler</h2>
           <p className="mt-3 text-sm leading-7 text-slate-700 sm:text-base">
-            Hukuki yükümlülükler, güvenlik incelemeleri veya teknik denetim gerektiren kayıtlar, yalnızca zorunlu süre
-            boyunca sınırlı erişimle saklanabilir. Süre bitiminde bu veriler de silinir veya anonim hale getirilir.
+            Doğrulama sonrası kullanıcı hesabı, profil bilgileri, oturum verileri, bildirim tercihleri ve kullanıcıya
+            bağlı uygulama verileri silme kapsamına alınır.
           </p>
         </article>
 
         <article className="glass-panel rounded-2xl p-6 sm:p-7">
-          <h2 className="text-lg font-semibold text-slate-900">4. İşlem Süresi</h2>
+          <h2 className="text-lg font-semibold text-slate-900">4. Silinmeyebilecek / Geçici Saklanabilecek Veriler</h2>
           <p className="mt-3 text-sm leading-7 text-slate-700 sm:text-base">
-            Silme talepleri, talebin doğrulanmasından sonra ortalama 7 ila 30 gün içinde sonuçlandırılır. İşlem
-            sonucunda kullanıcıya bilgi verilir.
+            Yasal yükümlülükler, muhasebe kayıtları, güvenlik kayıtları ve olası uyuşmazlık kayıtları mevzuat
+            gereklilikleri doğrultusunda sınırlı süreyle saklanabilir. Bu süre sonunda veriler silinir veya anonim hale
+            getirilir.
+          </p>
+        </article>
+
+        <article className="glass-panel rounded-2xl p-6 sm:p-7">
+          <h2 className="text-lg font-semibold text-slate-900">5. İşlem Süresi</h2>
+          <p className="mt-3 text-sm leading-7 text-slate-700 sm:text-base">
+            Silme talepleri, kimlik doğrulama tamamlandıktan sonra 7 ila 30 gün içinde sonuçlandırılır. Sonuç
+            kullanıcıya e-posta ile bildirilir.
+          </p>
+        </article>
+
+        <article className="glass-panel rounded-2xl p-6 sm:p-7">
+          <h2 className="text-lg font-semibold text-slate-900">6. Veri Silme Sonrası</h2>
+          <p className="mt-3 text-sm leading-7 text-slate-700 sm:text-base">
+            Silme işlemi tamamlandığında hesaba erişim sona erer ve silinen veriler geri getirilemez. Kullanıcı dilerse
+            sonradan yeniden kayıt oluşturabilir.
+          </p>
+        </article>
+
+        <article className="glass-panel rounded-2xl p-6 sm:p-7">
+          <h2 className="text-lg font-semibold text-slate-900">7. KVKK Hakları</h2>
+          <p className="mt-3 text-sm leading-7 text-slate-700 sm:text-base">
+            Kullanıcılar 6698 sayılı KVKK kapsamında verilerine erişim, düzeltme, silme ve işlenmesine itiraz etme
+            haklarına sahiptir. Talepler, mevzuata uygun süreler içinde değerlendirilir.
           </p>
         </article>
       </section>
