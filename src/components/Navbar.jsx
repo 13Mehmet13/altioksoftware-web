@@ -7,6 +7,7 @@ const links = [
   { label: 'Teknolojiler', to: '/teknolojiler' },
   { label: 'Roadmap', to: '/roadmap' },
   { label: 'Kurucu', to: '/kurucu' },
+  { label: 'Destek', to: '/support' },
   { label: 'İletişim', to: '/iletisim' },
 ]
 
