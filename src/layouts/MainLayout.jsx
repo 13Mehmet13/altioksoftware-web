@@ -1,14 +1,38 @@
-import { Outlet } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
+const brand = 'ALTIOK SOFTWARE'
+const titles = {
+  '/': `${brand} | Yazılım Çözümleri`,
+  '/urunler': `AutoCare Servis Yönetim Platformu | ${brand}`,
+  '/teknolojiler': `Teknoloji | ${brand}`,
+  '/roadmap': `Yol Haritası | ${brand}`,
+  '/kurucu': `Kurucu | ${brand}`,
+  '/iletisim': `İletişim | ${brand}`,
+  '/support': `Destek | ${brand}`,
+  '/privacy': `Gizlilik Politikası | ${brand}`,
+  '/terms': `Kullanım Şartları | ${brand}`,
+  '/account-deletion': `Hesap Silme | ${brand}`,
+  '/projects/kuzucular-premium-servis': `Kuzucular Premium Servis | ${brand}`,
+}
+
 function MainLayout() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    document.title = titles[pathname] || `Sayfa bulunamadı | ${brand}`
+  }, [pathname])
+
   return (
-    <div className="relative min-h-screen overflow-hidden bg-white">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_0%,rgba(46,163,255,0.15),transparent_35%),radial-gradient(circle_at_80%_30%,rgba(87,213,255,0.1),transparent_32%)]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-grid bg-[size:24px_24px] opacity-20" />
+    <div className="min-h-screen overflow-x-clip bg-ink">
+      <a href="#icerik" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-ink">
+        İçeriğe geç
+      </a>
       <Navbar />
-      <main>
+      <main id="icerik">
         <Outlet />
       </main>
       <Footer />

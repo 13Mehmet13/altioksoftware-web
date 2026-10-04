@@ -2,68 +2,131 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: dark;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-white text-slate-900 antialiased;
-  font-family: 'Sora', 'Segoe UI', system-ui, sans-serif;
+  @apply bg-ink font-sans text-fg antialiased;
 }
 
 ::selection {
-  background: rgba(87, 213, 255, 0.35);
+  background: rgba(46, 163, 255, 0.35);
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(22px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+:focus-visible {
+  outline: 2px solid #57d5ff;
+  outline-offset: 2px;
 }
 
 @layer components {
   .container-main {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
   }
 
-  .screen-shell {
-    @apply snap-none;
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.2em] text-brand;
   }
 
-  .screen-block {
-    @apply relative py-16 sm:py-24;
+  .h1 {
+    @apply font-display text-4xl font-semibold leading-[1.05] tracking-tight text-fg sm:text-6xl;
+    text-wrap: balance;
   }
 
-  .glass-panel {
-    @apply border border-slate-200 bg-white backdrop-blur-xl;
+  .h2 {
+    @apply font-display text-3xl font-semibold leading-tight tracking-tight text-fg sm:text-4xl;
+    text-wrap: balance;
   }
 
-  .deep-panel {
-    @apply border border-slate-300 bg-gradient-to-br from-white via-sky-50 to-cyan-50 backdrop-blur-xl;
-  }
-
-  .section-title {
-    @apply text-2xl font-semibold tracking-tight text-slate-900 md:text-4xl;
-  }
-
-  .section-subtitle {
-    @apply mt-3 max-w-3xl text-sm text-slate-800 md:text-base;
+  .lead {
+    @apply max-w-2xl text-base leading-7 text-mute sm:text-lg;
   }
 
   .btn-primary {
-    @apply rounded-xl bg-gradient-to-r from-accent to-accentSoft px-6 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.02] hover:brightness-110;
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand px-5 py-3 text-sm font-semibold text-ink transition hover:bg-accentSoft;
   }
 
   .btn-secondary {
-    @apply rounded-xl border border-sky-300/50 bg-white px-6 py-3 text-sm font-semibold text-sky-800 transition hover:border-sky-400 hover:bg-sky-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-edge bg-surface px-5 py-3 text-sm font-semibold text-fg transition hover:border-brand/60;
   }
 
-  .reveal {
-    animation: fadeUp 0.7s ease-out both;
+  .panel {
+    @apply rounded-xl border border-edge bg-surface;
+  }
+
+  /* eski sayfalar (gizlilik, destek vb.) için geriye dönük uyumlu sınıflar */
+  .glass-panel {
+    @apply border border-edge bg-surface;
+  }
+
+  .deep-panel {
+    @apply border border-edge bg-surface;
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(to right, rgba(135, 148, 166, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(135, 148, 166, 0.07) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+  }
+
+  /* Yasal/mağaza sayfaları: koyu temada bile açık zeminde okunur */
+  .light-zone {
+    @apply bg-white text-slate-900;
+    color-scheme: light;
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: var(--len, 1200);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulse-dot {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.curve-draw {
+  stroke-dasharray: var(--len, 1200);
+  animation: draw 1.1s ease-out both;
+}
+
+.log-line {
+  animation: rise 0.35s ease-out both;
+}
+
+.live-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curve-draw,
+  .log-line,
+  .live-dot {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
   }
 }

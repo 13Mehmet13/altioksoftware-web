@@ -33,10 +33,10 @@ function TermsPage() {
   return (
     <div className="py-14 sm:py-20">
       <section className="container-main">
-        <div className="deep-panel rounded-3xl p-8 sm:p-12">
-          <p className="text-xs uppercase tracking-[0.16em] text-sky-800">Yasal</p>
-          <h1 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-5xl">Kullanım Şartları</h1>
-          <p className="mt-5 max-w-4xl text-sm leading-7 text-slate-700 sm:text-base">
+        <div className="deep-panel rounded-2xl p-8 sm:p-12">
+          <p className="text-xs uppercase tracking-[0.16em] text-brand">Yasal</p>
+          <h1 className="mt-3 text-3xl font-semibold text-fg sm:text-5xl">Kullanım Şartları</h1>
+          <p className="mt-5 max-w-4xl text-sm leading-7 text-mute sm:text-base">
             Bu şartlar, Kuzucular Premium Servis uygulamasının kullanım esaslarını belirler. Uygulamayı kullanan tüm
             kullanıcılar aşağıdaki koşulları kabul eder.
           </p>
@@ -46,15 +46,15 @@ function TermsPage() {
       <section className="container-main mt-8 grid gap-4">
         {sections.map((section) => (
           <article key={section.title} className="glass-panel rounded-2xl p-6 sm:p-7">
-            <h2 className="text-lg font-semibold text-slate-900">{section.title}</h2>
-            <p className="mt-3 text-sm leading-7 text-slate-700 sm:text-base">{section.text}</p>
+            <h2 className="text-lg font-semibold text-fg">{section.title}</h2>
+            <p className="mt-3 text-sm leading-7 text-mute sm:text-base">{section.text}</p>
           </article>
         ))}
 
         <article className="glass-panel rounded-2xl p-6 sm:p-7">
-          <h2 className="text-lg font-semibold text-slate-900">8. İletişim</h2>
-          <p className="mt-3 text-sm leading-7 text-slate-700 sm:text-base">
-            Kullanım şartlarıyla ilgili sorularınız için: <a className="font-semibold text-sky-700 hover:text-sky-800" href="mailto:mehmetaltiok.ma@gmail.com">mehmetaltiok.ma@gmail.com</a>
+          <h2 className="text-lg font-semibold text-fg">8. İletişim</h2>
+          <p className="mt-3 text-sm leading-7 text-mute sm:text-base">
+            Kullanım şartlarıyla ilgili sorularınız için: <a className="font-semibold text-brand hover:text-brand" href="mailto:mehmetaltiok.ma@gmail.com">mehmetaltiok.ma@gmail.com</a>
           </p>
         </article>
       </section>

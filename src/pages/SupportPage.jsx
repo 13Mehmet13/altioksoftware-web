@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PageHead from '../components/PageHead'
 
 const faqItems = [
   {
@@ -52,66 +53,95 @@ function SupportPage() {
     }
   }
 
+  const field = 'w-full rounded-md border border-edge bg-ink px-4 py-3 text-sm text-fg placeholder:text-mute outline-none transition focus:border-brand'
+  const label = 'font-mono text-[10px] uppercase tracking-widest text-mute'
+
+  const channels = [
+    { k: 'E-posta', v: 'mehmetaltiok.ma@gmail.com', href: 'mailto:mehmetaltiok.ma@gmail.com' },
+    { k: 'Telefon', v: '0544 525 93 09', href: 'tel:+905445259309' },
+    {
+      k: 'WhatsApp',
+      v: 'Mesaj gönder',
+      href: 'https://wa.me/905445259309?text=Merhaba%2C%20Kuzucular%20Premium%20Servis%20i%C3%A7in%20destek%20almak%20istiyorum.',
+      external: true,
+    },
+  ]
+
   return (
-    <div className="py-14 sm:py-20">
-      <section className="container-main">
-        <div className="deep-panel rounded-3xl p-8 sm:p-12">
-          <p className="text-xs uppercase tracking-[0.16em] text-sky-800">Destek</p>
-          <h1 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-5xl">Kuzucular Premium Servis Destek</h1>
-          <p className="mt-5 max-w-4xl text-sm leading-7 text-slate-700 sm:text-base">
-            App Store ve Google Play Store kullanıcıları dahil tüm müşterilerimiz için teknik destek, kurulum yönlendirmesi
-            ve kullanım danışmanlığı sunuyoruz.
-          </p>
+    <>
+      <PageHead
+        eyebrow="Destek"
+        title="Kuzucular Premium Servis destek"
+        text="App Store ve Google Play kullanıcıları dahil tüm müşteriler için teknik destek, kurulum yönlendirmesi ve kullanım danışmanlığı."
+      />
+
+      <section className="border-b border-edge bg-surface">
+        <div className="container-main grid gap-px py-0 sm:grid-cols-3">
+          {channels.map((c) => (
+            <a
+              key={c.k}
+              href={c.href}
+              {...(c.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+              className="group bg-surface py-7 transition sm:px-6 sm:first:pl-0"
+            >
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand">{c.k}</p>
+              <p className="mt-2 font-display text-[15px] font-semibold [overflow-wrap:anywhere] sm:text-lg text-fg transition group-hover:text-brand">{c.v}</p>
+            </a>
+          ))}
         </div>
       </section>
 
-      <section className="container-main mt-8 grid gap-6 lg:grid-cols-2">
-        <article className="glass-panel rounded-3xl p-7 sm:p-8">
-          <h2 className="text-2xl font-semibold text-slate-900">Sık Sorulan Sorular</h2>
-          <div className="mt-5 space-y-4">
-            {faqItems.map((item) => (
-              <div key={item.q} className="rounded-2xl border border-slate-200 bg-white p-5">
-                <h3 className="text-base font-semibold text-slate-900">{item.q}</h3>
-                <p className="mt-2 text-sm leading-7 text-slate-700">{item.a}</p>
+      <section className="py-16 sm:py-24">
+        <div className="container-main grid items-start gap-12 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <p className="eyebrow">Sık sorulan sorular</p>
+            <h2 className="h2 mt-4">Hızlı cevaplar</h2>
+            <div className="mt-8 divide-y divide-edge border-y border-edge">
+              {faqItems.map((item) => (
+                <details key={item.q} className="group py-5">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-display text-base font-semibold text-fg [&::-webkit-details-marker]:hidden">
+                    {item.q}
+                    <span className="mt-0.5 font-mono text-brand transition group-open:rotate-45" aria-hidden="true">+</span>
+                  </summary>
+                  <p className="mt-3 max-w-xl text-sm leading-6 text-mute">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+
+          <div className="panel p-6 sm:p-8">
+            <h2 className="font-display text-xl font-semibold">Destek talebi gönder</h2>
+            <p className="mt-2 text-sm text-mute">Sorununuzu kısaca yazın, size e-posta ile dönelim.</p>
+            <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="s-name" className={label}>Ad Soyad</label>
+                <input id="s-name" required name="Ad Soyad" type="text" className={`${field} mt-2`} />
               </div>
-            ))}
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="s-mail" className={label}>E-posta</label>
+                  <input id="s-mail" required name="E-posta" type="email" className={`${field} mt-2`} />
+                </div>
+                <div>
+                  <label htmlFor="s-phone" className={label}>Telefon (opsiyonel)</label>
+                  <input id="s-phone" name="Telefon" type="tel" className={`${field} mt-2`} />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="s-msg" className={label}>Mesaj</label>
+                <textarea id="s-msg" required name="Destek Mesajı" rows="5" placeholder="Sorununuzu veya talebinizi yazın" className={`${field} mt-2`} />
+              </div>
+              <button type="submit" disabled={sending} className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:justify-self-start">
+                {sending ? 'Gönderiliyor...' : 'Destek talebi gönder'}
+              </button>
+
+              {submitted && <p className="rounded-md border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300">Talebiniz alındı. Destek ekibimiz en kısa sürede dönüş yapacaktır.</p>}
+              {error && <p className="rounded-md border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-300">{error}</p>}
+            </form>
           </div>
-
-          <div className="mt-6 rounded-2xl border border-slate-200 bg-sky-50 p-5">
-            <p className="text-sm leading-7 text-slate-700">
-              Destek e-postası: <a className="font-semibold text-sky-700 hover:text-sky-800" href="mailto:mehmetaltiok.ma@gmail.com">mehmetaltiok.ma@gmail.com</a>
-            </p>
-            <p className="mt-1 text-sm leading-7 text-slate-700">
-              Destek telefonu: <a className="font-semibold text-sky-700 hover:text-sky-800" href="tel:+905445259309">0544 525 93 09</a>
-            </p>
-            <a
-              href="https://wa.me/905445259309?text=Merhaba%2C%20Kuzucular%20Premium%20Servis%20i%C3%A7in%20destek%20almak%20istiyorum."
-              target="_blank"
-              rel="noreferrer"
-              className="mt-3 inline-flex rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100"
-            >
-              WhatsApp Destek
-            </a>
-          </div>
-        </article>
-
-        <article className="glass-panel rounded-3xl p-7 sm:p-8">
-          <h2 className="text-2xl font-semibold text-slate-900">Destek Formu</h2>
-          <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
-            <input required name="Ad Soyad" type="text" placeholder="Ad Soyad" className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 outline-none transition focus:border-sky-500" />
-            <input required name="E-posta" type="email" placeholder="E-posta" className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 outline-none transition focus:border-sky-500" />
-            <input name="Telefon" type="tel" placeholder="Telefon (Opsiyonel)" className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 outline-none transition focus:border-sky-500" />
-            <textarea required name="Destek Mesajı" rows="5" placeholder="Sorununuzu veya talebinizi yazın" className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 outline-none transition focus:border-sky-500" />
-            <button type="submit" disabled={sending} className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto">
-              {sending ? 'Gönderiliyor...' : 'Destek Talebi Gönder'}
-            </button>
-
-            {submitted && <p className="rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800">Talebiniz alındı. Destek ekibimiz en kısa sürede dönüş yapacaktır.</p>}
-            {error && <p className="rounded-xl border border-rose-300 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700">{error}</p>}
-          </form>
-        </article>
+        </div>
       </section>
-    </div>
+    </>
   )
 }
 

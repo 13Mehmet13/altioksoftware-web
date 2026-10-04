@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+const field = 'w-full rounded-md border border-edge bg-ink px-4 py-3 text-sm text-fg placeholder:text-mute outline-none transition focus:border-brand'
+
 function Contact() {
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
@@ -14,7 +16,7 @@ function Contact() {
     const form = event.currentTarget
     const formData = new FormData(form)
 
-    formData.append('_subject', 'Yeni Demo Talebi - Altıok Software')
+    formData.append('_subject', 'Yeni Talep - Altıok Software')
     formData.append('_template', 'table')
     formData.append('_captcha', 'false')
 
@@ -38,32 +40,54 @@ function Contact() {
   }
 
   return (
-    <section id="iletisim" className="screen-block flex items-center">
-      <div className="container-main">
-        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <aside className="deep-panel reveal rounded-3xl p-7 sm:p-8">
-            <h2 className="section-title text-2xl sm:text-3xl">İletişim</h2>
-            <p className="mt-4 text-base leading-7 text-slate-800">
-              AutoCare demo talebiniz için bizimle iletişime geçin. Size uygun kullanım planını birlikte oluşturalım.
-            </p>
-          </aside>
+    <section id="iletisim" className="py-16 sm:py-24">
+      <div className="container-main grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <aside>
+          <p className="eyebrow">Talep formu</p>
+          <h2 className="h2 mt-4">Konuyu yazın, size dönelim.</h2>
+          <p className="lead mt-4">AutoCare demosu ya da yazılım projesi. Konuyu seçin, kısaca anlatın.</p>
+          <dl className="mt-8 space-y-3 font-mono text-xs">
+            <div className="flex gap-4"><dt className="w-20 text-mute">E-posta</dt><dd className="text-fg">mehmetaltiok.ma@gmail.com</dd></div>
+            <div className="flex gap-4"><dt className="w-20 text-mute">Telefon</dt><dd><a href="tel:+905445259309" className="text-fg transition hover:text-brand">0544 525 93 09</a></dd></div>
+            <div className="flex gap-4"><dt className="w-20 text-mute">WhatsApp</dt><dd><a href="https://wa.me/905445259309" target="_blank" rel="noreferrer" className="text-fg transition hover:text-brand">Mesaj gönder</a></dd></div>
+            <div className="flex gap-4"><dt className="w-20 text-mute">Instagram</dt><dd className="text-fg">@altioksoftware</dd></div>
+          </dl>
+        </aside>
 
-          <div className="glass-panel reveal rounded-3xl p-7 sm:p-10">
-            <h3 className="text-xl font-semibold text-slate-900">Demo Talep Formu</h3>
-            <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
-              <input required name="Ad Soyad" type="text" placeholder="Ad Soyad" className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 outline-none transition focus:border-sky-500" />
-              <input required name="Firma Adı" type="text" placeholder="Firma Adı" className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 outline-none transition focus:border-sky-500" />
-              <input required name="Telefon" type="tel" placeholder="Telefon" className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 outline-none transition focus:border-sky-500" />
-              <textarea required name="Mesaj" rows="4" placeholder="Mesaj" className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500 outline-none transition focus:border-sky-500" />
-
-              <button type="submit" disabled={sending} className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto">
+        <div className="panel p-6 sm:p-8">
+          <form className="grid gap-4 sm:grid-cols-2" onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="c-name" className="font-mono text-[10px] uppercase tracking-widest text-mute">Ad Soyad</label>
+              <input id="c-name" required name="Ad Soyad" type="text" className={`${field} mt-2`} />
+            </div>
+            <div>
+              <label htmlFor="c-phone" className="font-mono text-[10px] uppercase tracking-widest text-mute">Telefon</label>
+              <input id="c-phone" required name="Telefon" type="tel" className={`${field} mt-2`} />
+            </div>
+            <div>
+              <label htmlFor="c-topic" className="font-mono text-[10px] uppercase tracking-widest text-mute">Konu</label>
+              <select id="c-topic" name="Konu" className={`${field} mt-2`} defaultValue="AutoCare demo">
+                <option>AutoCare demo</option>
+                <option>Yazılım projesi</option>
+                <option>Diğer</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="c-company" className="font-mono text-[10px] uppercase tracking-widest text-mute">Firma</label>
+              <input id="c-company" name="Firma" type="text" placeholder="Firma adı" className={`${field} mt-2`} />
+            </div>
+            <div className="sm:col-span-2">
+              <label htmlFor="c-msg" className="font-mono text-[10px] uppercase tracking-widest text-mute">Mesaj</label>
+              <textarea id="c-msg" required name="Mesaj" rows="5" className={`${field} mt-2`} />
+            </div>
+            <div className="sm:col-span-2">
+              <button type="submit" disabled={sending} className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto">
                 {sending ? 'Gönderiliyor...' : 'Gönder'}
               </button>
-
-              {submitted && <p className="rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800">Talebiniz alındı. E-posta adresinize/ekibimize iletildi.</p>}
-              {error && <p className="rounded-xl border border-rose-300 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700">{error}</p>}
-            </form>
-          </div>
+            </div>
+            {submitted && <p className="rounded-md border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300 sm:col-span-2">Talebiniz alındı. En kısa sürede dönüş yapılacak.</p>}
+            {error && <p className="rounded-md border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-300 sm:col-span-2">{error}</p>}
+          </form>
         </div>
       </div>
     </section>

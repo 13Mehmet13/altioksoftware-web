@@ -1,23 +1,53 @@
-import Technologies from '../components/Technologies'
-import WhyAltiok from '../components/WhyAltiok'
-import ProcessTimeline from '../components/ProcessTimeline'
+import PageHead from '../components/PageHead'
+
+const stack = [
+  { name: 'Flutter', role: 'Mobil arayüz', text: 'iOS ve Android için tek kod tabanı.' },
+  { name: 'FastAPI', role: 'Backend', text: 'Hızlı, tipli ve belgeli REST servisleri.' },
+  { name: 'PostgreSQL', role: 'Veritabanı', text: 'İlişkisel, güvenilir ve yedeklenebilir veri.' },
+  { name: 'Python', role: 'Otomasyon ve AI', text: 'Veri işleme, analiz ve model entegrasyonu.' },
+  { name: 'Docker', role: 'Dağıtım', text: 'Tekrarlanabilir ortam ve kolay kurulum.' },
+  { name: 'Bulut', role: 'Altyapı', text: 'Yedekli ve erişimi kontrol edilen barındırma.' },
+]
+
+const principles = [
+  { title: 'Basit kalır', text: 'Her özellik gerçek bir iş akışından çıkar. Gereksiz ekran yazılmaz.' },
+  { title: 'Ölçülebilir', text: 'Kayıtlar tutulur, değişiklikler izlenir, sonuç rakamla görülür.' },
+  { title: 'Sürdürülebilir', text: 'Okunur kod, belge ve düzenli yedekle uzun ömürlü ürün.' },
+]
 
 function TechnologiesPage() {
   return (
-    <div className="py-14 sm:py-20">
-      <section className="container-main">
-        <div className="deep-panel rounded-3xl p-8 sm:p-12">
-          <p className="text-xs uppercase tracking-[0.16em] text-sky-800">Teknoloji</p>
-          <h1 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-5xl">Mühendislik Altyapımız</h1>
-          <p className="mt-5 max-w-3xl text-base leading-7 text-slate-800 sm:text-lg">
-            Altıok Software, modern ürün geliştirme prensipleriyle mobil, backend ve AI odaklı çözümler üretir.
-          </p>
+    <>
+      <PageHead
+        eyebrow="Teknoloji"
+        title="Mühendislik altyapımız"
+        text="Mobil, backend ve yapay zeka odaklı çözümleri modern ve sade bir yığınla geliştiriyoruz."
+      />
+      <section className="py-16 sm:py-24">
+        <div className="container-main grid gap-px overflow-hidden rounded-xl border border-edge bg-edge sm:grid-cols-2 lg:grid-cols-3">
+          {stack.map((s) => (
+            <div key={s.name} className="bg-ink p-6">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand">{s.role}</p>
+              <h2 className="mt-4 font-display text-2xl font-semibold">{s.name}</h2>
+              <p className="mt-2 text-sm leading-6 text-mute">{s.text}</p>
+            </div>
+          ))}
         </div>
       </section>
-      <WhyAltiok />
-      <Technologies />
-      <ProcessTimeline />
-    </div>
+      <section className="border-t border-edge bg-surface py-16 sm:py-24">
+        <div className="container-main">
+          <p className="eyebrow">Yaklaşım</p>
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            {principles.map((p) => (
+              <div key={p.title} className="panel p-6 !bg-ink">
+                <h3 className="font-display text-lg font-semibold">{p.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-mute">{p.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
 
